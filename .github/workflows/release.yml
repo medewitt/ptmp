@@ -22,12 +22,9 @@ jobs:
       - uses: actions/checkout@master
       - name: Compile and release
         uses: rust-build/rust-build.action@v1.4.5
-        with:
-          rust_target: x86_64-pc-windows-gnu
-          toolchain_version: stable
-
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           RUSTTARGET: ${{ matrix.target }}
           ARCHIVE_TYPES: ${{ matrix.archive }}
+          toolchain_version: stable
