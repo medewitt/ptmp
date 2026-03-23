@@ -1,0 +1,25 @@
+
+[package]
+name = "ptmp"
+version = "0.1.1"
+edition = "2021"
+authors = ["Michael DeWitt <michael.dewitt@wfusm.edu>"]
+description = "Copy a template directory and render Tera placeholders via a TUI."
+license = "MIT"
+
+
+[[bin]]
+name = "ptmp"
+path = "src/main.rs"
+
+
+[dependencies]
+anyhow = "1"
+clap = { version = "4", features = ["derive"] }
+serde = { version = "1", features = ["derive"] }
+toml = "0.8"
+walkdir = "2"
+tera = "1.19"
+inquire = "0.6"
+chrono = "0.4"
+sanitize-filename = "0.5"
