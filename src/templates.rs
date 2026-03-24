@@ -1,0 +1,9 @@
+pub const README: &str = include_str!("templates/readme.md");
+pub const MAIN_TEX: &str = include_str!("templates/main.tex");
+pub const REFERENCES_BIB: &str = include_str!("templates/references.bib");
+pub const MAKEFILE: &str = include_str!("templates/Makefile");
+pub const TASKFILE: &str = include_str!("templates/Taskfile.yml");
+pub const R_EXAMPLE: &str = include_str!("templates/example.R");
+pub const JULIA_EXAMPLE: &str = include_str!("templates/example.jl");
+pub const PROJECT_TOML: &str = include_str!("templates/Project.toml");
+pub const FIELDS_TOML: &str = include_str!("templates/fields.toml");

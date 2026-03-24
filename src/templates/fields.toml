@@ -1,0 +1,32 @@
+
+# Define fields collected via TUI and injected into Tera templates
+[[fields]]
+name = "title"
+prompt = "Project title"
+default = "My Analysis"
+required = true
+
+[[fields]]
+name = "author"
+prompt = "Author name"
+default = ""
+required = true
+
+[[fields]]
+name = "affiliation"
+prompt = "Affiliation (e.g., Institution/Lab)"
+default = ""
+required = false
+
+
+[[fields]]
+name = "main_file"
+prompt = "Main LaTeX file name"
+default = "main.tex"
+required = false
+
+[[fields]]
+name = "latex_engine"
+prompt = "LaTeX engine (pdf/xelatex/lualatex)"
+default = "pdf"
+required = true
