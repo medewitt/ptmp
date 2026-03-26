@@ -1,0 +1,19 @@
+---
+title: "{{ title }}"
+author: "{{ author }}"
+date: today
+format:
+  pdf:
+    documentclass: article
+bibliography: references.bib
+---
+
+## Introduction
+
+## Methods
+
+## Results
+
+## Discussion
+
+## References

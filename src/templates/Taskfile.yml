@@ -1,0 +1,93 @@
+# Taskfile for research project: {{ title }}
+# https://taskfile.dev
+version: "3"
+
+vars:
+  MAIN: "{{ main_file }}"
+  OUTDIR: output
+  FIGDIR: figures
+  ENGINE:
+    sh: |
+      case "{{ latex_engine }}" in
+        xelatex)  echo "-xelatex" ;;
+        lualatex) echo "-lualatex" ;;
+        *)        echo "-pdf" ;;
+      esac
+
+{% raw %}
+tasks:
+  default:
+    desc: Build the PDF
+    deps: [latex]
+
+  latex:
+    desc: Build PDF with latexmk
+    cmds:
+      - mkdir -p {{.OUTDIR}}
+      - >-
+        latexmk {{.ENGINE}}
+        -interaction=nonstopmode
+        -halt-on-error
+        -file-line-error
+        -outdir={{.OUTDIR}}
+        {{.MAIN}}
+
+  watch:
+    desc: Continuous rebuild on file changes
+    cmds:
+      - >-
+        latexmk {{.ENGINE}}
+        -pvc
+        -interaction=nonstopmode
+        -file-line-error
+        -outdir={{.OUTDIR}}
+        {{.MAIN}}
+
+  tikz:
+    desc: Render TikZ standalone figures
+    cmds:
+      - mkdir -p {{.FIGDIR}}
+      - |
+        for f in figures/*.tex; do
+          [ -f "$f" ] || continue
+          latexmk {{.ENGINE}} \
+            -interaction=nonstopmode \
+            -outdir={{.FIGDIR}} "$f"
+        done
+
+  r:
+    desc: Run all R scripts in R/
+    cmds:
+      - |
+        for f in R/*.R; do
+          [ -f "$f" ] || continue
+          echo "Running $f"
+          Rscript "$f"
+        done
+
+  julia:
+    desc: Run Julia scripts in src/
+    cmds:
+      - |
+        for f in src/*.jl; do
+          [ -f "$f" ] || continue
+          echo "Running $f"
+          julia --project=. "$f"
+        done
+
+  figures:
+    desc: Generate all figures (R + Julia)
+    deps: [r, julia]
+
+  clean:
+    desc: Clean LaTeX auxiliary files
+    cmds:
+      - latexmk -C -outdir={{.OUTDIR}}
+      - rm -f {{.OUTDIR}}/{{.MAIN}}
+
+  open:
+    desc: Open the generated PDF
+    deps: [latex]
+    cmds:
+      - open {{.OUTDIR}}/{{.MAIN}}
+{% endraw %}

@@ -1,0 +1,160 @@
+/*-- scss:defaults --*/
+
+// Wake Forest brand colors
+$wakegold: #8C6D2C;
+$goldonblack: #cc9f2e;
+$wakegray: #54565A;
+$wakeyellow: #FDC314;
+$wakegreen: #6BA539;
+$waketeal: #008C95;
+$wakelightgray: #CFD2D3;
+$wakecoolgray: #A7A8A9;
+$wakered: #861F41;
+$wakenavy: #002B49;
+$black: #000000;
+$white: #FFFFFF;
+
+// Atrium colors
+$atriumteal: #00818B;
+$atriumblue: #004A98;
+
+// Presentation palette
+$body-bg: $white;
+$body-color: $wakegray;
+$link-color: $wakegold;
+
+$presentation-heading-color: $black;
+$presentation-heading-font: Garamond, Georgia, serif;
+$presentation-font-size-root: 32px;
+$font-family-sans-serif: "Nunito Sans", Arial, sans-serif;
+$font-family-serif: Garamond, Georgia, serif;
+
+$presentation-h1-font-size: 1.6em;
+$presentation-h2-font-size: 1.2em;
+$presentation-h3-font-size: 1.0em;
+
+// Slide layout
+$presentation-block-margin: 12px;
+
+/*-- scss:rules --*/
+
+// Headings
+.reveal h1,
+.reveal h2,
+.reveal h3 {
+  font-family: $presentation-heading-font;
+  color: $black;
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+.reveal h2 {
+  border-bottom: 2px solid $wakegold;
+  padding-bottom: 0.2em;
+  margin-bottom: 0.6em;
+}
+
+// Title slide
+.reveal .title-slide,
+.reveal #title-slide {
+  background-color: $black;
+  color: $white;
+}
+
+.reveal #title-slide .title {
+  color: $white;
+  font-family: $font-family-sans-serif;
+  font-size: 1.4em;
+  font-weight: 600;
+}
+
+.reveal #title-slide .subtitle {
+  color: $goldonblack;
+  font-family: $font-family-serif;
+  font-size: 0.9em;
+  font-style: italic;
+}
+
+.reveal #title-slide .author {
+  color: $wakelightgray;
+  font-size: 0.7em;
+  margin-top: 1em;
+}
+
+// Gold accent on slide bullets
+.reveal ul > li::marker {
+  color: $wakegold;
+}
+
+.reveal ol > li::marker {
+  color: $wakegold;
+}
+
+// Strong / bold text
+.reveal strong {
+  color: $black;
+}
+
+// Code blocks
+.reveal pre code {
+  background-color: #f5f2ee;
+  border-left: 4px solid $wakegold;
+  font-size: 0.7em;
+}
+
+// Blockquotes
+.reveal blockquote {
+  border-left: 4px solid $wakegold;
+  background: rgba(140, 109, 44, 0.08);
+  padding: 0.5em 1em;
+  font-style: italic;
+  color: $wakegray;
+}
+
+// Footer / logo bar
+.reveal .slide-logo {
+  max-height: 45px !important;
+  bottom: 8px;
+  right: 12px;
+}
+
+// Slide number
+.reveal .slide-number {
+  color: $wakecoolgray;
+  font-size: 0.55em;
+  background-color: transparent;
+}
+
+// Progress bar
+.reveal .progress span {
+  background: $wakegold;
+}
+
+// Title slide logos container
+.title-logos {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2em;
+  margin-top: 1.5em;
+}
+
+.title-logos img {
+  height: 50px;
+  filter: brightness(0) invert(1);
+}
+
+// Custom dark title slide for Outbreak deck
+.reveal section.outbreak-title-slide {
+  background-color: $black !important;
+  color: $white;
+}
+
+.reveal section.outbreak-title-slide h2 {
+  color: $white;
+  border-color: $goldonblack;
+}
+
+.reveal section.outbreak-title-slide strong {
+  color: $goldonblack;
+}

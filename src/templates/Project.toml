@@ -1,0 +1,7 @@
+name = "{{ title }}"
+authors = ["{{ author }}"]
+
+[deps]
+CSV = "0.10"
+DataFrames = "1.6"
+Plots = "1.40"
