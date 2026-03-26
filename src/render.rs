@@ -181,7 +181,10 @@ mod tests {
 
         render_or_copy_file(&src, &dst, &simple_ctx(), true).unwrap();
 
-        assert!(!dst.exists(), "fields.toml should not be copied to destination");
+        assert!(
+            !dst.exists(),
+            "fields.toml should not be copied to destination"
+        );
     }
 
     #[test]

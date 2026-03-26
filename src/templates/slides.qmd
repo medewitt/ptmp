@@ -1,0 +1,22 @@
+---
+title: "{{ title }}"
+author: "{{ author }}"
+date: today
+format:
+  revealjs:
+    theme: reveal-theme.scss
+    slide-number: true
+    transition: slide
+    logo: assets/logo-wide.png
+    progress: true
+    width: 1280
+    height: 720
+---
+
+## Overview
+
+## Methods
+
+## Results
+
+## Summary

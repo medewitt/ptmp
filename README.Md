@@ -1,7 +1,7 @@
 # ptmp
 
 A single-binary Rust CLI that copies a template directory and renders [Tera](https://keats.github.io/tera/) placeholders via an interactive TUI.
-Targets research and academic projects with LaTeX, R, Julia, and Taskfile/Makefile scaffolding.
+Targets research and academic projects with LaTeX, R, Julia, Quarto, and Taskfile/Makefile scaffolding.
 
 ## Installation
 
@@ -41,6 +41,13 @@ ptmp readme         # README.md
 ptmp r              # R/example.R
 ptmp julia          # src/example.jl
 ptmp project-toml   # Project.toml
+ptmp slurm          # example.slurm
+ptmp gitignore      # .gitignore
+ptmp editorconfig   # .editorconfig
+ptmp citation       # CITATION.cff
+ptmp license        # LICENSE (MIT)
+ptmp quarto         # report.qmd
+ptmp slides         # slides.qmd
 ```
 
 ## Template rendering

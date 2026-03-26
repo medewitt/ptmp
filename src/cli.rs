@@ -58,4 +58,25 @@ pub enum Commands {
     /// Emit a Project.toml into the current directory
     #[command(name = "project-toml")]
     ProjectToml,
+
+    /// Emit an example.slurm job script into the current directory
+    Slurm,
+
+    /// Emit a .gitignore into the current directory
+    Gitignore,
+
+    /// Emit an .editorconfig into the current directory
+    Editorconfig,
+
+    /// Emit a CITATION.cff into the current directory
+    Citation,
+
+    /// Emit an MIT LICENSE into the current directory
+    License,
+
+    /// Emit a Quarto report (report.qmd) into the current directory
+    Quarto,
+
+    /// Emit a Quarto revealjs slide deck (slides.qmd) into the current directory
+    Slides,
 }

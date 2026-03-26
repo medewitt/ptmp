@@ -17,6 +17,7 @@ pub fn init_default_template(path: &Path) -> Result<()> {
     fs::create_dir_all(path.join("R"))?;
     fs::create_dir_all(path.join("output"))?;
     fs::create_dir_all(path.join("notes"))?;
+    fs::create_dir_all(path.join("data-raw"))?;
 
     File::create(path.join(".here"))?.write_all(b"")?;
     fs::write(path.join("README.md"), templates::README)?;
@@ -26,7 +27,10 @@ pub fn init_default_template(path: &Path) -> Result<()> {
     fs::write(path.join("fields.toml"), templates::FIELDS_TOML)?;
     fs::write(path.join("Makefile"), templates::MAKEFILE)?;
     fs::write(path.join("Project.toml"), templates::PROJECT_TOML)?;
-    fs::write(path.join("src").join("example.jl"), templates::JULIA_EXAMPLE)?;
+    fs::write(
+        path.join("src").join("example.jl"),
+        templates::JULIA_EXAMPLE,
+    )?;
     fs::write(path.join("Taskfile.yml"), templates::TASKFILE)?;
 
     Ok(())
@@ -102,6 +106,43 @@ pub fn emit_component(component: &Component) -> Result<()> {
     fs::write(&output, rendered)?;
 
     println!("Wrote {}", component.output_path);
+
+    for &(path, content) in component.extra_text {
+        let dest = cwd.join(path);
+        if dest.exists() {
+            let proceed = Confirm::new(&format!("'{}' already exists. Overwrite?", path))
+                .with_default(false)
+                .prompt()
+                .context("Confirmation prompt failed")?;
+            if !proceed {
+                continue;
+            }
+        }
+        if let Some(parent) = dest.parent() {
+            fs::create_dir_all(parent)?;
+        }
+        fs::write(&dest, content)?;
+        println!("Wrote {}", path);
+    }
+
+    for &(path, content) in component.extra_binary {
+        let dest = cwd.join(path);
+        if dest.exists() {
+            let proceed = Confirm::new(&format!("'{}' already exists. Overwrite?", path))
+                .with_default(false)
+                .prompt()
+                .context("Confirmation prompt failed")?;
+            if !proceed {
+                continue;
+            }
+        }
+        if let Some(parent) = dest.parent() {
+            fs::create_dir_all(parent)?;
+        }
+        fs::write(&dest, content)?;
+        println!("Wrote {}", path);
+    }
+
     Ok(())
 }
 
@@ -143,10 +184,7 @@ mod tests {
             "src/example.jl",
         ];
         for name in expected {
-            assert!(
-                dir.path().join(name).exists(),
-                "missing file: {name}"
-            );
+            assert!(dir.path().join(name).exists(), "missing file: {name}");
         }
     }
 
