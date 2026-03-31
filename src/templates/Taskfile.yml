@@ -90,4 +90,9 @@ tasks:
     deps: [latex]
     cmds:
       - open {{.OUTDIR}}/{{.MAIN}}
+
+  bib:
+    desc: Format references.bib
+    cmds:
+      - bibfmt references.bib
 {% endraw %}
